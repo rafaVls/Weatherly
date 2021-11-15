@@ -1,0 +1,25 @@
+# Byte-compiled 
+__pycache__/
+
+# Dependencies
+node_modules/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Unit test / coverage reports
+.coverage
+.coverage.*
+.cache
+*.cover
+.pytest_cache/
+cover/
+
+# Flask stuff
+instance/
+.webassets-cache
+
+# Environments
+.venv/
