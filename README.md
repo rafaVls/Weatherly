@@ -1,3 +1,4 @@
+
 # Fullstack-Weatherly
 
 A fullstack weather app made with React, Typescript and Flask.
@@ -13,7 +14,7 @@ the user can look for the forecast of a different location.
 
 ## Screenshots
 
-![Landing page of the weather app](https://user-images.githubusercontent.com/70592708/136630708-04ab701b-a11c-4e43-a692-3e7523d62af0.png)
+![Landing page of the weather app](https://user-images.githubusercontent.com/70592708/142050739-66425261-e9f4-4e18-899b-aaea7125a1d6.png)
 
 ## Tech stack
 
