@@ -18,4 +18,8 @@ module.exports = {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
+  devServer: {
+    compress: true,
+    port: 3000,
+  },
 };
