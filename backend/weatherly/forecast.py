@@ -2,7 +2,7 @@ from os import environ
 from flask import Blueprint, request
 
 from .Param import Param
-from ._utils import multithread_request, fetch_forecast 
+from ._utils import multithread_request, fetch_api 
 
 bp = Blueprint("forecast", __name__, url_prefix="/forecast")
 
@@ -22,6 +22,7 @@ def get_forecast():
         latitude.validate_type()
         longitude.validate_type()
 
+        url = "https://api.openweathermap.org/data/2.5/onecall"
         payload = {
             "lat": latitude.value,
             "lon": longitude.value,
@@ -30,7 +31,7 @@ def get_forecast():
         }
 
         data_metric, data_imperial = multithread_request(
-            fetch_forecast, payload, ["metric", "imperial"]
+            fetch_api, payload, url, ["metric", "imperial"]
         )
 
         if "cod" in data_metric: # the error code is present in both data_*

@@ -5,7 +5,7 @@ from multiprocessing import Pool
 import requests 
 
 def multithread_request(
-    func, query_params: dict[str, "str | float"], iter_params: list[str]
+    func, query_params: dict[str, "str | float"], url:str, iter_params: list[str]
 ):
     """
     Use `multiprocessing.Pool()` to make HTTP requests in parallel (with 
@@ -14,15 +14,16 @@ def multithread_request(
     """
     with Pool(2) as p:
         data_list = [data for data in p.starmap(
-            func, zip(iter_params, repeat(query_params))
+            func, zip(repeat(query_params), repeat(url), iter_params)
+            # func, zip(iter_params, repeat(query_params))
         )]
 
     return data_list
 
-def fetch_forecast(
-    units: str, 
+def fetch_api(
     payload: dict[str, "str | float"], 
-    url: str = "https://api.openweathermap.org/data/2.5/onecall",
+    url: str,
+    units: str = None,
     times_called: int = 1
 ):
     """
@@ -31,7 +32,9 @@ def fetch_forecast(
     recursive calls in the process of catching and handling errors.
     """
     try:
-        payload["units"] = units
+        if units is not None:
+            payload["units"] = units
+
         data = requests.get(url, params=payload)
 
     except exceptions.Timeout as e_timeout:
@@ -41,7 +44,8 @@ def fetch_forecast(
 
         times_called += 1
 
-        data = fetch_forecast(units, payload, url, times_called)
+        # data = fetch_forecast(payload, units, url, times_called)
+        data = fetch_api(payload, url, units, times_called)
         return data # return directly, successful fetch_forecast returns json 
 
     except exceptions.TooManyRedirects as e_redirects:
