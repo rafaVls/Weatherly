@@ -1,3 +1,5 @@
+import re
+
 class Param:
     """
     A query parameter type with `name`, `value` and `type` properties.
@@ -20,6 +22,11 @@ class Param:
         >>> p.validate_type()
         TypeError: my_parameter must be of type str
         """
-        if self.value is None:
+        address_regex = r"[A-Za-z0-9 ]+"
+
+        if (
+            self.value is None or
+            (self.name == "address" and re.sub(address_regex, "", self.value))
+        ):
             raise TypeError(f"{self.name} must be of type {self.type}")
 
