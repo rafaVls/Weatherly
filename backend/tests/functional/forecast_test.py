@@ -3,7 +3,7 @@ from pytest import mark
 import json
 
 class TestGetForecast:
-    """All tests related to the get_forecast route"""
+    """All tests related to the /forecast route"""
 
     @mark.parametrize("mock_mr_res", ["success"], indirect=True)
     def test_use_case(self, mock_mr_res):
@@ -24,7 +24,6 @@ class TestGetForecast:
             "success": False
         }
 
-    # def test_type_error(self, test_app, mock_multithread):
     @mark.parametrize("mock_mr_res", [None], indirect=True)
     def test_type_error(self, mock_mr_res):
         assert mock_mr_res.status_code == 400
