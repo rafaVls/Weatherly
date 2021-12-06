@@ -8,15 +8,11 @@ export interface Forecast {
   timezone_offset: number;
 }
 
-interface Current extends CommonConditions, Sun {
-  visibility: number;
-}
+interface Current extends CommonConditions, Sun, Visibility {}
 
 interface Daily extends CommonConditions, Pop, Moon, Sun {}
 
-interface Hourly extends CommonConditions, Pop {
-  visibility: number;
-}
+interface Hourly extends CommonConditions, Pop, Visibility {}
 
 interface Weather {
   description: string;
@@ -34,6 +30,10 @@ interface FeelsLike {
 
 interface Pop {
   pop: number;
+}
+
+interface Visibility {
+  visibility: number;
 }
 
 interface Temp {

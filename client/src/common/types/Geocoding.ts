@@ -24,7 +24,7 @@ interface Bounds {
   southwest: Coordinates;
 }
 
-interface Coordinates {
+export interface Coordinates {
   lat: number;
   lng: number;
 }
