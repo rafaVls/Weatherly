@@ -11,6 +11,7 @@
     "esModuleInterop": false,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
