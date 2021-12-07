@@ -2,6 +2,15 @@ import { Actions, State } from "../common/types/State";
 
 function AppReducer(state: State, action: Actions): State {
   switch (action.type) {
+    case "SET_COORDINATES":
+      const { latitude, longitude } = action;
+
+      return {
+        ...state,
+        latitude,
+        longitude,
+      };
+
     case "GET_FORECAST":
       return {
         ...state,

@@ -1,23 +1,29 @@
-import { useContext, useEffect, useState } from "react";
+import { ReactElement, useContext, useEffect } from "react";
 import { GlobalContext } from "./context/GlobalState";
 
-function App() {
-  const { forecast, geocoding, getForecast, getGeocoding } =
-    useContext(GlobalContext);
-  const [iconURL, setURL] = useState("");
+function App(): ReactElement {
+  const {
+    latitude,
+    longitude,
+    forecast,
+    geocoding,
+    setCoordinates,
+    getForecast,
+    getGeocoding,
+  } = useContext(GlobalContext);
 
   useEffect(() => {
-    // setting the default location to San Diego. Users can change it
-    // through the searchbar or their own location
-    getForecast && getForecast({ lat: 32.71, lng: -117.16 });
-    getGeocoding && getGeocoding("San Diego");
-
-    if (forecast) {
-      setURL(
-        `http://openweathermap.org/img/wn/${forecast.metric.current.weather[0].icon}@2x.png`
-      );
+    if (latitude == null || longitude == null) {
+      setCoordinates && setCoordinates(32.71, -117.16);
     }
-  }, []);
+
+    if (latitude && longitude) {
+      // setting the default location to San Diego. Users can change it
+      // through the searchbar or their own location
+      getForecast && getForecast({ lat: 32.71, lng: -117.16 });
+      getGeocoding && getGeocoding("San Diego");
+    }
+  }, [latitude, longitude]);
 
   return (
     <>
@@ -31,7 +37,7 @@ function App() {
 
           <section className="current-weather">
             <figure>
-              <img src={iconURL} alt="" />
+              <img src="" alt="" />
               <figcaption>Rainy</figcaption>
             </figure>
 

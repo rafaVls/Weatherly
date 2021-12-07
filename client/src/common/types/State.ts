@@ -14,7 +14,7 @@ export type State = {
 };
 
 export type Actions =
-  | { type: "SET_COORDINATES"; latlon: Coordinates }
+  | { type: "SET_COORDINATES"; latitude: number; longitude: number }
   | { type: "GET_FORECAST"; forecast: MultiUnitForecast }
   | { type: "GET_GEOCODING"; geocoding: Geocoding }
   | { type: "ERROR"; error: unknown };

@@ -21,6 +21,14 @@ type Props = {
 function GlobalProvider({ children }: Props) {
   const [state, dispatch] = useReducer(AppReducer, initialState);
 
+  function setCoordinates(latitude: number, longitude: number): void {
+    dispatch({
+      type: "SET_COORDINATES",
+      latitude,
+      longitude,
+    });
+  }
+
   async function getForecast(position: Coordinates): Promise<void> {
     try {
       const lat = position.lat;
@@ -70,6 +78,7 @@ function GlobalProvider({ children }: Props) {
         longitude: state.longitude,
         forecast: state.forecast,
         geocoding: state.geocoding,
+        setCoordinates,
         getForecast,
         getGeocoding,
       }}
