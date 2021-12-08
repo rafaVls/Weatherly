@@ -1,5 +1,6 @@
 import { ReactElement, useContext, useEffect } from "react";
 import { GlobalContext } from "./context/GlobalState";
+import { Loader, Conditions, NavBar, CurrentWeather } from "./components";
 
 function App(): ReactElement {
   const {
@@ -29,48 +30,13 @@ function App(): ReactElement {
     <>
       {forecast && geocoding ? (
         <section className="mobile-container">
-          <nav>
-            <h1>San Diego, CA, US</h1>
-            <p>Wednesday, Nov 10 2021</p>
-            <div className="hamburger-container"></div>
-          </nav>
+          <NavBar />
+          <CurrentWeather />
 
-          <section className="current-weather">
-            <figure>
-              <img src="" alt="" />
-              <figcaption>Rainy</figcaption>
-            </figure>
-
-            <div className="temperatures">
-              <p className="current">
-                78<sup>°F</sup>
-              </p>
-              <div className="min-max">
-                <p className="max">Max 82</p>
-                <p className="min">Min 74</p>
-              </div>
-            </div>
-          </section>
-
-          <section className="conditions-container">
-            <div className="condition-card">
-              <figure>
-                <img src="" alt="" />
-                <figcaption>Sunrise</figcaption>
-              </figure>
-              <p className="condition-value">06:16 AM</p>
-            </div>
-            <div className="condition-card"></div>
-            <div className="condition-card"></div>
-            <div className="condition-card"></div>
-            <div className="condition-card"></div>
-            <div className="condition-card"></div>
-          </section>
+          <Conditions />
         </section>
       ) : (
-        <section className="loader-container">
-          <div className="loader"></div>
-        </section>
+        <Loader />
       )}
     </>
   );
