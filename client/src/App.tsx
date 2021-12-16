@@ -1,6 +1,7 @@
 import { ReactElement, useContext, useEffect } from "react";
 import { GlobalContext } from "./context/GlobalState";
 import { Loader, Conditions, NavBar, CurrentWeather } from "./components";
+import "./App.css";
 
 function App(): ReactElement {
   const {
@@ -28,16 +29,18 @@ function App(): ReactElement {
 
   return (
     <>
-      {forecast && geocoding ? (
-        <section className="mobile-container">
-          <NavBar />
-          <CurrentWeather />
+      <section className="app">
+        {forecast && geocoding ? (
+          <>
+            <NavBar />
+            <CurrentWeather />
 
-          <Conditions />
-        </section>
-      ) : (
-        <Loader />
-      )}
+            <Conditions />
+          </>
+        ) : (
+          <Loader />
+        )}
+      </section>
     </>
   );
 }
