@@ -14,10 +14,10 @@ interface Daily extends CommonConditions, Pop, Moon, Sun {}
 
 interface Hourly extends CommonConditions, Pop, Visibility {}
 
-interface Weather {
+export interface Weather {
   description: string;
   icon: string;
-  id: number;
+  id?: number;
   main: string;
 }
 
@@ -36,7 +36,7 @@ interface Visibility {
   visibility: number;
 }
 
-interface Temp {
+export interface Temp {
   day: number;
   eve: number;
   max: number;

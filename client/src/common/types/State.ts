@@ -19,7 +19,7 @@ export type Actions =
   | { type: "GET_GEOCODING"; geocoding: Geocoding }
   | { type: "ERROR"; error: unknown };
 
-interface MultiUnitForecast {
+export interface MultiUnitForecast {
   imperial: Forecast;
   metric: Forecast;
 }
