@@ -61,7 +61,7 @@ function GlobalProvider({ children }: Props) {
 
       dispatch({
         type: "GET_GEOCODING",
-        geocoding: data,
+        geocoding: data[0],
       });
     } catch (error) {
       dispatch({
