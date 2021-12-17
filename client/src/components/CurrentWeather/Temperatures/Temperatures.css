@@ -1,0 +1,42 @@
+.temperatures {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.current {
+  position: relative;
+  font-size: 4.5rem;
+  color: var(--text-secondary);
+}
+
+.current > sup {
+  position: absolute;
+  font-size: 1.125rem;
+}
+
+.min-max {
+  display: flex;
+}
+
+.max,
+.min {
+  max-width: 5ch;
+  text-align: center;
+}
+
+.max {
+  color: var(--text-max-temp);
+}
+
+.min {
+  color: var(--text-min-temp);
+}
+
+.separator {
+  min-height: 100%;
+  width: 1px;
+  margin: 0 0.5em;
+  border: 1px dashed var(--text-primary);
+}
