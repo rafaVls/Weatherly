@@ -1,12 +1,12 @@
 export interface Geocoding {
-  address_components: Components;
+  address_components: Component[];
   formatted_address: string;
   geometry: Geometry;
   place_id: string;
   types: string[];
 }
 
-interface Components {
+interface Component {
   long_name: string;
   short_name: string;
   types: string[];
