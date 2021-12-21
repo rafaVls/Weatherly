@@ -10,8 +10,14 @@ function unixToDate(
   if (unixTimestamp) {
     const miliseconds = unixTimestamp * 1000;
     const date = new Date(miliseconds);
+    const options: Intl.DateTimeFormatOptions = {
+      timeZone,
+      hour12: true,
+      hour: "2-digit",
+      minute: "2-digit",
+    };
 
-    return date.toLocaleTimeString("en-GB", { timeZone, hour12: true });
+    return date.toLocaleTimeString("en-GB", options);
   }
 
   return "N/A";
