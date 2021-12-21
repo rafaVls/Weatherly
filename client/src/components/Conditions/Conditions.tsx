@@ -11,7 +11,7 @@ function unixToDate(
     const miliseconds = unixTimestamp * 1000;
     const date = new Date(miliseconds);
 
-    return date.toLocaleTimeString("en-GB", { timeZone });
+    return date.toLocaleTimeString("en-GB", { timeZone, hour12: true });
   }
 
   return "N/A";
@@ -26,13 +26,13 @@ function Conditions(): ReactElement {
   const conditions = [
     {
       id: 1,
-      value: `${unixToDate(current?.sunrise, timeZone)} AM`,
+      value: `${unixToDate(current?.sunrise, timeZone).replace("am", "AM")}`,
       name: "Sunrise",
       icon: "wi:sunrise",
     },
     {
       id: 2,
-      value: `${unixToDate(current?.sunset, timeZone)} PM`,
+      value: `${unixToDate(current?.sunset, timeZone).replace("pm", "PM")}`,
       name: "Sunset",
       icon: "wi:sunset",
     },
