@@ -44,7 +44,7 @@ function Conditions(): ReactElement {
     },
     {
       id: 4,
-      value: current?.feels_like + " °F",
+      value: (current?.feels_like as number).toFixed(0) + " °F",
       name: "Feels Like",
       icon: "wi:thermometer",
     },
