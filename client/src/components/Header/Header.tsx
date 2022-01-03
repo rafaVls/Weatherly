@@ -1,7 +1,7 @@
 import { ReactElement, useContext } from "react";
 import { GlobalContext } from "../../context/GlobalState";
-import { HamburgerMenu } from "./HamburgerMenu/HamburgerMenu";
-import "./NavBar.css";
+// import { HamburgerMenu } from "./HamburgerMenu/HamburgerMenu";
+import "./Header.css";
 
 function validateAddress(address: string | undefined): string {
   if (address) {
@@ -41,18 +41,15 @@ function getTodayString(): string {
   return `${weekdays[today.getDay()]}, ${todayString}`;
 }
 
-function NavBar(): ReactElement {
+function Header(): ReactElement {
   const { geocoding } = useContext(GlobalContext);
 
   return (
-    <nav>
-      <header className="location-and-date">
-        <h1>{validateAddress(geocoding?.formatted_address)}</h1>
-        <p>{getTodayString()}</p>
-      </header>
-      <HamburgerMenu />
-    </nav>
+    <header className="location-and-date">
+      <h1>{validateAddress(geocoding?.formatted_address)}</h1>
+      <p>{getTodayString()}</p>
+    </header>
   );
 }
 
-export { NavBar };
+export { Header };

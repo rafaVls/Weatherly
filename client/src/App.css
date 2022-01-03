@@ -23,6 +23,10 @@ html {
   background-color: var(--bg-main);
 }
 
+ul {
+  list-style: none;
+}
+
 .app {
   height: 100vh;
   display: grid;

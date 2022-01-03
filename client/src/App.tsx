@@ -1,6 +1,12 @@
 import { ReactElement, useContext, useEffect } from "react";
 import { GlobalContext } from "./context/GlobalState";
-import { Loader, Conditions, NavBar, CurrentWeather } from "./components";
+import {
+  Loader,
+  Conditions,
+  Header,
+  HamburgerMenu,
+  CurrentWeather,
+} from "./components";
 import "./App.css";
 
 function App(): ReactElement {
@@ -32,7 +38,8 @@ function App(): ReactElement {
       <section className="app">
         {forecast && geocoding ? (
           <>
-            <NavBar />
+            <Header />
+            <HamburgerMenu />
             <CurrentWeather />
 
             <Conditions />
