@@ -1,14 +1,40 @@
-import { MouseEvent, ReactElement, useRef } from "react";
+import {
+  MouseEvent,
+  ReactElement,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { Toggle } from "./Toggle/Toggle";
+import { GlobalContext } from "../../context/GlobalState";
 import "./HamburgerMenu.css";
 
 function HamburgerMenu(): ReactElement {
+  const [searchValue, setValue] = useState("");
   const menuElement = useRef<HTMLDivElement>(null);
+  const { geocoding, setCoordinates, getForecast, getGeocoding } =
+    useContext(GlobalContext);
+
+  useEffect(() => {
+    if (geocoding && setCoordinates && getForecast) {
+      const { lat, lng } = geocoding.geometry.location;
+      setCoordinates(lat, lng);
+      getForecast({ lat, lng });
+    }
+  }, [geocoding]);
 
   function clickHandler(
     e: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
   ) {
     menuElement.current?.classList.toggle("open");
     e.currentTarget.classList.toggle("toggled");
+  }
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
+    e.preventDefault();
+    getGeocoding && getGeocoding(searchValue);
+    setValue("");
   }
 
   return (
@@ -20,38 +46,29 @@ function HamburgerMenu(): ReactElement {
       </button>
       <div className="menu" ref={menuElement}>
         <ul className="toggles-container">
-          <li className="unit-toggle">
-            <label htmlFor="speed-units">
-              <input id="speed-units" type="checkbox" />
-              <strong>Speed units</strong>
-              <span>
-                <span>km/h</span>
-                <span>mph</span>
-                <span></span>
-              </span>
-            </label>
-          </li>
-          <li className="unit-toggle">
-            <label htmlFor="temp-units">
-              <input id="temp-units" type="checkbox" />
-              <strong>Temperature and units</strong>
-              <span>
-                <span>°C</span>
-                <span>°F</span>
-                <span></span>
-              </span>
-            </label>
-          </li>
+          {/* <Toggle */}
+          {/*   options={{ firstOption: "km/h", secondOption: "mph" }} */}
+          {/*   toggleUnits="speed" */}
+          {/* /> */}
+          {/* <Toggle */}
+          {/*   options={{ firstOption: "°C", secondOption: "°F" }} */}
+          {/*   toggleUnits="temp" */}
+          {/* /> */}
         </ul>
-        <div className="search-box-container">
+        <form
+          className="search-box-container"
+          onSubmit={(e) => handleSubmit(e)}
+        >
           <label htmlFor="search-box">Search by city</label>
           <input
             id="search-box"
             className="search-box"
             type="search"
             placeholder="London"
+            value={searchValue}
+            onChange={(e) => setValue(e.target.value)}
           />
-        </div>
+        </form>
       </div>
     </>
   );

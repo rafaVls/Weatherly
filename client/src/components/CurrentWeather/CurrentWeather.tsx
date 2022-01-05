@@ -9,7 +9,7 @@ function getDayIcon(icon: string): string {
 
 function CurrentWeather(): ReactElement {
   const { forecast } = useContext(GlobalContext);
-  const weather = forecast?.metric.current.weather[0];
+  const weather = forecast?.imperial.current.weather[0];
 
   return (
     <section className="current-weather">

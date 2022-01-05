@@ -21,15 +21,15 @@ function App(): ReactElement {
   } = useContext(GlobalContext);
 
   useEffect(() => {
-    if (latitude == null || longitude == null) {
-      setCoordinates && setCoordinates(32.71, -117.16);
-    }
-
-    if (latitude && longitude) {
+    if (latitude === null || longitude === null) {
       // setting the default location to San Diego. Users can change it
       // through the searchbar or their own location
-      getForecast && getForecast({ lat: 32.71, lng: -117.16 });
+      let lat = 32.71;
+      let lng = -117.16;
+
+      getForecast && getForecast({ lat, lng });
       getGeocoding && getGeocoding("San Diego");
+      setCoordinates && setCoordinates(32.71, -117.16);
     }
   }, [latitude, longitude]);
 
