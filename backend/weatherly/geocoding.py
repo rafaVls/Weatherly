@@ -1,5 +1,5 @@
 from os import environ
-from flask import Blueprint, request
+from flask import Blueprint, request, current_app
 
 from .Param import Param
 from ._utils import fetch_api
@@ -21,7 +21,7 @@ def get_coordinates():
         url = "https://maps.googleapis.com/maps/api/geocode/json"
         payload = {
             "address": address.value,
-            "key": environ.get("GEOCODING_API_KEY")
+            "key": current_app.config["GEOCODING_API_KEY"]
         }
 
         data = fetch_api(payload, url)
