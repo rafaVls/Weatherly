@@ -1,2 +1,1 @@
 FLASK_APP=weatherly
-FLASK_ENV=development

@@ -1,5 +1,5 @@
 from os import environ
-from flask import Blueprint, request
+from flask import Blueprint, request, current_app
 
 from .Param import Param
 from ._utils import multithread_request, fetch_api 
@@ -27,7 +27,7 @@ def get_forecast():
             "lat": latitude.value,
             "lon": longitude.value,
             "exclude": "minutely,alerts",
-            "appid": environ.get("ONECALL_API_KEY")
+            "appid": current_app.config["ONECALL_API_KEY"]
         }
 
         data_metric, data_imperial = multithread_request(

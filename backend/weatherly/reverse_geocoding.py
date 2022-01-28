@@ -1,5 +1,5 @@
 from os import environ
-from flask import Blueprint, request
+from flask import Blueprint, request, current_app
 
 from .Param import Param
 from ._utils import fetch_api
@@ -24,7 +24,7 @@ def get_reverse_geocode():
         payload = {
             "latlng": f"{latitude.value},{longitude.value}",
             "result_type": "political",
-            "key": environ.get("REVERSE_GEOCODING_API_KEY")
+            "key": current_app.config["REVERSE_GEOCODING_API_KEY"]
         }
 
         data = fetch_api(payload, url)
