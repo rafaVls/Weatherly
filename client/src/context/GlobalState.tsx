@@ -20,6 +20,7 @@ type Props = {
 
 function GlobalProvider({ children }: Props) {
   const [state, dispatch] = useReducer(AppReducer, initialState);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   function setCoordinates(latitude: number, longitude: number): void {
     dispatch({
@@ -34,7 +35,7 @@ function GlobalProvider({ children }: Props) {
       const lat = position.lat;
       const lon = position.lng;
 
-      const url = `//localhost:5000/forecast?lat=${lat}&lon=${lon}`;
+      const url = `${API_URL}/forecast?lat=${lat}&lon=${lon}`;
       const res = await fetch(url);
       const { forecast_imperial, forecast_metric } = await res.json();
 
@@ -55,7 +56,7 @@ function GlobalProvider({ children }: Props) {
 
   async function getGeocoding(address: string): Promise<void> {
     try {
-      const url = `//localhost:5000/geocoding?address=${address}`;
+      const url = `${API_URL}/geocoding?address=${address}`;
       const res = await fetch(url);
       const { data } = await res.json();
 
