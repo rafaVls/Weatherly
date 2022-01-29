@@ -25,9 +25,9 @@ function unixToDate(
 
 function Conditions(): ReactElement {
   const { forecast } = useContext(GlobalContext);
-  const current = forecast?.imperial.current;
-  const daily = forecast?.imperial.daily[0];
-  const timeZone = forecast?.imperial.timezone;
+  const current = forecast?.current;
+  const daily = forecast?.daily[0];
+  const timeZone = forecast?.timezone;
 
   const conditions = [
     {

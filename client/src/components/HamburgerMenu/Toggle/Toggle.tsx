@@ -1,4 +1,5 @@
-import { ReactElement } from "react";
+import { ReactElement, useContext } from "react";
+import { GlobalContext } from "../../../context/GlobalState";
 import "./Toggle.css";
 
 interface Props {
@@ -7,6 +8,7 @@ interface Props {
 }
 
 function Toggle({ options, toggleUnits }: Props): ReactElement {
+  const { setForecast } = useContext(GlobalContext);
   const inputId = toggleUnits + "-units";
   const labelText = toggleUnits === "speed" ? "Speed" : "Temperature";
 
