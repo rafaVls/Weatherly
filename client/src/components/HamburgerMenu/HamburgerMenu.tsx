@@ -34,6 +34,7 @@ function HamburgerMenu(): ReactElement {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     getGeocoding && getGeocoding(searchValue);
+    menuElement.current?.classList.toggle("open");
     setValue("");
   }
 
