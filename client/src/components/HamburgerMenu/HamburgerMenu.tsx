@@ -47,14 +47,14 @@ function HamburgerMenu(): ReactElement {
       </button>
       <div className="menu" ref={menuElement}>
         <ul className="toggles-container">
-          {/* <Toggle */}
-          {/*   options={{ firstOption: "km/h", secondOption: "mph" }} */}
-          {/*   toggleUnits="speed" */}
-          {/* /> */}
-          {/* <Toggle */}
-          {/*   options={{ firstOption: "°C", secondOption: "°F" }} */}
-          {/*   toggleUnits="temp" */}
-          {/* /> */}
+          <Toggle
+            options={{ firstOption: "km/h", secondOption: "mph" }}
+            toggleUnits="speed"
+          />
+          <Toggle
+            options={{ firstOption: "°C", secondOption: "°F" }}
+            toggleUnits="temp"
+          />
         </ul>
         <form
           className="search-box-container"
