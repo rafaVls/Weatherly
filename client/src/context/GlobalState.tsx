@@ -7,6 +7,7 @@ import { AppReducer } from "./AppReducer";
 let initialState: State = {
   latitude: null,
   longitude: null,
+  globalForecast: null,
   forecast: null,
   geocoding: null,
 };
@@ -41,7 +42,7 @@ function GlobalProvider({ children }: Props) {
 
       dispatch({
         type: "GET_FORECAST",
-        forecast: {
+        globalForecast: {
           imperial: forecast_imperial,
           metric: forecast_metric,
         },
@@ -50,6 +51,25 @@ function GlobalProvider({ children }: Props) {
       dispatch({
         type: "ERROR",
         error: error,
+      });
+    }
+  }
+
+  async function setForecast(units: "metric" | "imperial") {
+    const forecast =
+      units == "metric"
+        ? state.globalForecast?.metric
+        : state.globalForecast?.imperial;
+
+    if (forecast) {
+      dispatch({
+        type: "SET_FORECAST",
+        forecast,
+      });
+    } else {
+      dispatch({
+        type: "ERROR",
+        error: new Error("Forecast is undefined"),
       });
     }
   }
@@ -77,10 +97,12 @@ function GlobalProvider({ children }: Props) {
       value={{
         latitude: state.latitude,
         longitude: state.longitude,
+        globalForecast: state.globalForecast,
         forecast: state.forecast,
         geocoding: state.geocoding,
         setCoordinates,
         getForecast,
+        setForecast,
         getGeocoding,
       }}
     >

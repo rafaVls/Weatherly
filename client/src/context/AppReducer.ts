@@ -14,6 +14,12 @@ function AppReducer(state: State, action: Actions): State {
     case "GET_FORECAST":
       return {
         ...state,
+        globalForecast: action.globalForecast,
+      };
+
+    case "SET_FORECAST":
+      return {
+        ...state,
         forecast: action.forecast,
       };
 
