@@ -1,27 +1,36 @@
-import { ReactElement } from "react";
+import { ReactElement, useContext } from "react";
+import { GlobalContext } from "../../../context/GlobalState";
 import "./Toggle.css";
 
-interface Props {
-  options: { firstOption: string; secondOption: string };
-  toggleUnits: "speed" | "temp";
-}
+function Toggle(): ReactElement {
+  const { setForecast } = useContext(GlobalContext);
 
-function Toggle({ options, toggleUnits }: Props): ReactElement {
-  const inputId = toggleUnits + "-units";
-  const labelText = toggleUnits === "speed" ? "Speed" : "Temperature";
+  function clickHandler(e: React.MouseEvent<HTMLInputElement, MouseEvent>) {
+    const unitSystem = getUnitSystem(e.currentTarget.checked);
+
+    setForecast && setForecast(unitSystem);
+  }
+
+  function getUnitSystem(checkboxState: boolean): "metric" | "imperial" {
+    return checkboxState ? "metric" : "imperial";
+  }
 
   return (
-    <li className="unit-toggle">
-      <label htmlFor={inputId}>
-        <input id={inputId} type="checkbox" />
-        <strong>{labelText} units</strong>
+    <div className="unit-toggle">
+      <label htmlFor="measurement-units">
+        <input
+          id="measurement-units"
+          type="checkbox"
+          onClick={(e) => clickHandler(e)}
+        />
+        <strong>Measurement units</strong>
         <span>
-          <span>{options.firstOption}</span>
-          <span>{options.secondOption}</span>
+          <span>°F, mph</span>
+          <span>°C, m/s</span>
           <span></span>
         </span>
       </label>
-    </li>
+    </div>
   );
 }
 

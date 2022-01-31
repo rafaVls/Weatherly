@@ -30,7 +30,7 @@
   z-index: 9;
 
   width: 300px;
-  height: 400px;
+  height: 250px;
   padding-top: 1em;
 
   display: grid;
@@ -42,7 +42,7 @@
   border-left: none;
 
   background-color: var(--bg-secondary);
-  transition: left 0.35s linear;
+  transition: all 0.35s linear;
 }
 
 .menu.open {

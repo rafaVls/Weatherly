@@ -25,9 +25,9 @@ function unixToDate(
 
 function Conditions(): ReactElement {
   const { forecast } = useContext(GlobalContext);
-  const current = forecast?.imperial.current;
-  const daily = forecast?.imperial.daily[0];
-  const timeZone = forecast?.imperial.timezone;
+  const current = forecast?.current;
+  const daily = forecast?.daily[0];
+  const timeZone = forecast?.timezone;
 
   const conditions = [
     {
@@ -44,13 +44,14 @@ function Conditions(): ReactElement {
     },
     {
       id: 3,
-      value: current?.wind_speed + " mph",
+      value: current?.wind_speed + ` ${forecast?.units.wind_speed}`,
       name: "Wind Speed",
       icon: "wi:strong-wind",
     },
     {
       id: 4,
-      value: (current?.feels_like as number).toFixed(0) + " °F",
+      value:
+        (current?.feels_like as number).toFixed(0) + ` ${forecast?.units.temp}`,
       name: "Feels Like",
       icon: "wi:thermometer",
     },

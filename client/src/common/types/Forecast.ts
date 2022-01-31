@@ -6,6 +6,7 @@ export interface Forecast {
   lon: number;
   timezone: string;
   timezone_offset: number;
+  units: Units;
 }
 
 interface Current extends CommonConditions, Sun, Visibility {}
@@ -69,4 +70,9 @@ interface CommonConditions {
   wind_deg: number;
   wind_gust: number;
   wind_speed: number;
+}
+
+interface Units {
+  temp: "°C" | "°F";
+  wind_speed: "m/s" | "mph";
 }

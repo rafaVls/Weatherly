@@ -34,6 +34,7 @@ function HamburgerMenu(): ReactElement {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     getGeocoding && getGeocoding(searchValue);
+    menuElement.current?.classList.toggle("open");
     setValue("");
   }
 
@@ -45,16 +46,9 @@ function HamburgerMenu(): ReactElement {
         <span className="hamburger-line"></span>
       </button>
       <div className="menu" ref={menuElement}>
-        <ul className="toggles-container">
-          {/* <Toggle */}
-          {/*   options={{ firstOption: "km/h", secondOption: "mph" }} */}
-          {/*   toggleUnits="speed" */}
-          {/* /> */}
-          {/* <Toggle */}
-          {/*   options={{ firstOption: "°C", secondOption: "°F" }} */}
-          {/*   toggleUnits="temp" */}
-          {/* /> */}
-        </ul>
+        {/* <ul className="toggles-container"> */}
+        <Toggle />
+        {/* </ul> */}
         <form
           className="search-box-container"
           onSubmit={(e) => handleSubmit(e)}

@@ -13,10 +13,12 @@ function App(): ReactElement {
   const {
     latitude,
     longitude,
+    globalForecast,
     forecast,
     geocoding,
     setCoordinates,
     getForecast,
+    setForecast,
     getGeocoding,
   } = useContext(GlobalContext);
 
@@ -31,7 +33,8 @@ function App(): ReactElement {
       getGeocoding && getGeocoding("San Diego");
       setCoordinates && setCoordinates(32.71, -117.16);
     }
-  }, [latitude, longitude]);
+    globalForecast && setForecast && setForecast("imperial");
+  }, [globalForecast, latitude, longitude]);
 
   return (
     <>

@@ -13,8 +13,8 @@ function Temperatures(): ReactElement {
 
   useEffect(() => {
     if (forecast) {
-      const currentTemp = forecast.imperial.current.temp as number;
-      const dailyTemp = forecast.imperial.daily[0].temp as Temp;
+      const currentTemp = forecast.current.temp as number;
+      const dailyTemp = forecast.daily[0].temp as Temp;
 
       setTemperatures({
         current: +currentTemp.toFixed(0),
@@ -28,7 +28,7 @@ function Temperatures(): ReactElement {
     <div className="temperatures">
       <p className="current">
         {temperatures.current}
-        <sup>°F</sup>
+        <sup>{forecast?.units.temp}</sup>
       </p>
       <div className="min-max">
         <p className="max">Max {temperatures.max}</p>
