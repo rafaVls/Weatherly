@@ -28,7 +28,7 @@ function Temperatures(): ReactElement {
     <div className="temperatures">
       <p className="current">
         {temperatures.current}
-        <sup>°F</sup>
+        <sup>{forecast?.units.temp}</sup>
       </p>
       <div className="min-max">
         <p className="max">Max {temperatures.max}</p>

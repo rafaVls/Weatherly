@@ -57,11 +57,16 @@ function GlobalProvider({ children }: Props) {
 
   async function setForecast(units: "metric" | "imperial") {
     const forecast =
-      units == "metric"
+      units === "metric"
         ? state.globalForecast?.metric
         : state.globalForecast?.imperial;
 
     if (forecast) {
+      forecast.units =
+        units === "metric"
+          ? { temp: "°C", wind_speed: "m/s" }
+          : { temp: "°F", wind_speed: "mph" };
+
       dispatch({
         type: "SET_FORECAST",
         forecast,
